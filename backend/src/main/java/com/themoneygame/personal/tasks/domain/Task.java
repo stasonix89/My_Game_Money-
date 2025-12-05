@@ -1,7 +1,9 @@
+// src/main/java/com/themoneygame/personal/tasks/domain/Task.java
 package com.themoneygame.personal.tasks.domain;
 
 import com.themoneygame.auth.domain.User;
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
@@ -12,40 +14,120 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // пользователь-владелец задачи
+    /**
+     * Владелец задачи.
+     */
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private User user;
 
-    // тип задачи
+    /**
+     * Тип задачи (спорт, здоровье и т.п.).
+     */
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private TaskType type;
+    private TaskType taskType;
 
-    // месяц + год (в твоём дизайне только эти 2 поля)
-    private Integer month;
-    private Integer year;
-
-    @Column(nullable = false)
+    /**
+     * Текст задачи, например "Пробежка 5 км".
+     */
+    @Column(nullable = false, length = 500)
     private String text;
 
-    @Enumerated(EnumType.STRING)
-    private TaskStatus status = TaskStatus.ACTIVE;
+    /**
+     * Флаг "выполнено".
+     * completed = true → задача попадает в историю.
+     */
+    @Column(nullable = false)
+    private boolean completed = false;
 
-    private LocalDate createdAt = LocalDate.now();
+    /**
+     * Год и месяц задачи — для удобной группировки / фильтрации.
+     * При сохранении автоматически подставляются из date.
+     */
+    @Column(nullable = false)
+    private int year;
 
-    // --- GET/SET ---
-    public Long getId() { return id; }
-    public User getUser() { return user; }
-    public TaskType getType() { return type; }
-    public Integer getMonth() { return month; }
-    public Integer getYear() { return year; }
-    public String getText() { return text; }
-    public TaskStatus getStatus() { return status; }
-    public LocalDate getCreatedAt() { return createdAt; }
+    @Column(nullable = false)
+    private int month;
 
-    public void setUser(User user) { this.user = user; }
-    public void setType(TaskType type) { this.type = type; }
-    public void setMonth(Integer month) { this.month = month; }
-    public void setYear(Integer year) { this.year = year; }
-    public void setText(String text) { this.text = text; }
-    public void setStatus(TaskStatus status) { this.status = status; }
+    /**
+     * Полная дата задачи (YYYY-MM-DD).
+     */
+    @Column(nullable = false)
+    private LocalDate date;
+
+    public Task() {
+    }
+
+    public Task(User user,
+                TaskType taskType,
+                String text,
+                boolean completed,
+                LocalDate date) {
+        this.user = user;
+        this.taskType = taskType;
+        this.text = text;
+        this.completed = completed;
+        setDate(date);
+    }
+
+    // ---------- getters / setters ----------
+
+    public Long getId() {
+        return id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public TaskType getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(TaskType taskType) {
+        this.taskType = taskType;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    /**
+     * При установке даты автоматически выставляем год и месяц.
+     */
+    public void setDate(LocalDate date) {
+        this.date = date;
+        if (date != null) {
+            this.year = date.getYear();
+            this.month = date.getMonthValue();
+        }
+    }
 }

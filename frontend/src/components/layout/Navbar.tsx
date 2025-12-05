@@ -15,6 +15,10 @@ type NavItem = {
     subItems?: NavSubItem[];
 };
 
+type NavbarProps = {
+    onMenuClick: () => void; // колбэк для открытия сайдбара
+};
+
 const NAV_ITEMS: NavItem[] = [
     {
         label: "Инвестиции",
@@ -54,14 +58,13 @@ const NAV_ITEMS: NavItem[] = [
     },
 ];
 
-const Navbar: React.FC = () => {
+const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
     const navigate = useNavigate();
     const location = useLocation();
 
     // какое меню в нижней навигации сейчас раскрыто (по basePath)
-    const [openMenuBasePath, setOpenMenuBasePath] = React.useState<string | null>(
-        null
-    );
+    const [openMenuBasePath, setOpenMenuBasePath] =
+        React.useState<string | null>(null);
 
     const isItemActive = (item: NavItem) =>
         location.pathname.startsWith(item.basePath);
@@ -86,8 +89,20 @@ const Navbar: React.FC = () => {
 
     return (
         <header className="navbar">
-            {/* ВЕРХНЯЯ ПОЛОСА С ЗОЛОТЫМ НАЗВАНИЕМ */}
+            {/* ВЕРХНЯЯ ПОЛОСА С ЗОЛОТЫМ НАЗВАНИЕМ + бургер */}
             <div className="navbar-top">
+                {/* Бургер для открытия сайдбара */}
+                <button
+                    type="button"
+                    className="navbar-burger"
+                    onClick={onMenuClick}
+                    aria-label="Открыть меню"
+                >
+                    <span />
+                    <span />
+                    <span />
+                </button>
+
                 <div className="navbar-title-container" onClick={handleTitleClick}>
                     <span className="navbar-title-glow">MY GAME MONEY</span>
                 </div>

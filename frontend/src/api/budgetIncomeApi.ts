@@ -26,18 +26,20 @@ export type BudgetIncomeResponse = {
     year: number;
     month: number;
 
-    yearlyDividends: number;
-    depositAmount: number;
-    depositRateYearly: number;
-    salaryMonthly: number;
+    // входные данные (могут быть null в ответе → делаем опциональными)
+    yearlyDividends?: number | null;
+    depositAmount?: number | null;
+    depositRateYearly?: number | null;
+    salaryMonthly?: number | null;
     extraIncomes: ExtraIncomeDto[];
 
-    dividendsMonthly: number;
-    depositInterestMonthly: number;
-    extraIncomesMonthly: number;
-    totalMonthlyIncome: number;
+    // расчётные поля (могут быть null/отсутствовать)
+    dividendsMonthly?: number | null;
+    depositInterestMonthly?: number | null;
+    extraIncomeMonthly?: number | null; // ВАЖНО: имя как в backend (extraIncomeMonthly)
+    totalMonthlyIncome?: number | null;
 
-    history: BudgetIncomeHistoryPoint[];
+    history?: BudgetIncomeHistoryPoint[];
 };
 
 export const budgetIncomeApi = {

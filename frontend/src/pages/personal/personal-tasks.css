@@ -1,0 +1,192 @@
+/* src/pages/personal/personal-tasks.css */
+
+.personal-tasks-page {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.personal-tasks-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+}
+
+.personal-tasks-filters {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.personal-tasks-filters .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.personal-tasks-filters .filter-control {
+    min-width: 120px;
+}
+
+/* Секции */
+.personal-tasks-section {
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: 16px;
+    padding: 16px 20px;
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+.personal-tasks-section.history-section {
+    margin-top: 16px;
+}
+
+.section-title {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #f6e27a;
+}
+
+/* Таблица задач */
+.tasks-table {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 8px;
+}
+
+.tasks-header-row,
+.tasks-row {
+    display: grid;
+    grid-template-columns: 2.4fr 1.3fr 1.1fr 1.1fr 1.5fr;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: 10px;
+}
+
+.tasks-header-row {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.tasks-row {
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid transparent;
+    cursor: default;
+    transition: background 0.15s ease, border-color 0.15s ease,
+    transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.tasks-row:hover {
+    background: rgba(0, 0, 0, 0.75);
+    border-color: rgba(246, 226, 122, 0.28);
+    transform: translateY(-1px);
+    box-shadow: 0 0 10px rgba(246, 226, 122, 0.18);
+}
+
+.tasks-row.empty-row {
+    grid-template-columns: 1fr;
+    justify-content: center;
+}
+
+.tasks-main-cell {
+    cursor: pointer;
+    text-decoration: underline dotted rgba(246, 226, 122, 0.5);
+    text-underline-offset: 2px;
+}
+
+.tasks-actions-col {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+/* Теги статуса */
+.tag-status {
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 11px;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.55);
+    transition: background 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.tag-active {
+    border-color: rgba(246, 212, 90, 0.7);
+    color: #f6e27a;
+}
+
+.tag-status.tag-active:hover {
+    background: rgba(246, 212, 90, 0.16);
+}
+
+.tag-completed {
+    border-color: rgba(120, 220, 140, 0.7);
+    color: #9be79b;
+}
+
+.tag-status.tag-completed:hover {
+    background: rgba(120, 220, 140, 0.16);
+}
+
+/* История */
+.history-year-block {
+    margin-top: 16px;
+}
+
+.history-year-title {
+    font-size: 16px;
+    margin-bottom: 4px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.history-table .tasks-row-history {
+    opacity: 0.9;
+}
+
+/* Модалка задач */
+.personal-tasks-modal {
+    max-width: 520px;
+}
+
+.modal-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.modal-field textarea {
+    resize: vertical;
+    min-height: 64px;
+}
+
+.personal-tasks-period-row {
+    display: flex;
+    gap: 8px;
+}
+
+.personal-tasks-period-row select,
+.personal-tasks-period-row input[type="number"] {
+    flex: 1;
+}
+
+.checkbox-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Общие сервисные элементы */
+.info-row,
+.error-row {
+    margin-top: 8px;
+}

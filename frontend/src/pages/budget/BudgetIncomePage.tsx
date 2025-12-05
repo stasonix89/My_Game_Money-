@@ -53,6 +53,15 @@ const getCurrentYearMonth = () => {
     };
 };
 
+// Гарантируем, что всегда получаем число
+const safeNumber = (value: unknown): number => {
+    if (typeof value === "number" && Number.isFinite(value)) {
+        return value;
+    }
+    const num = Number(value);
+    return Number.isFinite(num) ? num : 0;
+};
+
 const BudgetIncomePage: React.FC = () => {
     const { year: currentYear, month: currentMonth } = getCurrentYearMonth();
 
@@ -84,10 +93,10 @@ const BudgetIncomePage: React.FC = () => {
                 const data = await budgetIncomeApi.getIncome(year, month);
                 setServerResult(data);
 
-                setYearlyDividends(data.yearlyDividends ?? 0);
-                setDepositAmount(data.depositAmount ?? 0);
-                setDepositRateYearly(data.depositRateYearly ?? 0);
-                setSalaryMonthly(data.salaryMonthly ?? 0);
+                setYearlyDividends(safeNumber(data.yearlyDividends));
+                setDepositAmount(safeNumber(data.depositAmount));
+                setDepositRateYearly(safeNumber(data.depositRateYearly));
+                setSalaryMonthly(safeNumber(data.salaryMonthly));
 
                 if (data.extraIncomes && data.extraIncomes.length > 0) {
                     setExtraIncomes(
@@ -142,27 +151,35 @@ const BudgetIncomePage: React.FC = () => {
     ]);
 
     // --- Итоговые значения, которые показываем пользователю ---
-    // Если backend уже посчитал текущий месяц → берём его.
-    // Если нет (новый месяц до сохранения) → используем локальный расчёт.
     const isServerForCurrentMonth =
-        serverResult &&
+        !!serverResult &&
         serverResult.year === year &&
         serverResult.month === month;
 
+    // значения из backend с защитой от undefined/null
+    const serverDividendsMonthly = safeNumber(serverResult?.dividendsMonthly);
+    const serverDepositInterestMonthly = safeNumber(
+        serverResult?.depositInterestMonthly
+    );
+    const serverExtraMonthly = safeNumber(serverResult?.extraIncomeMonthly); // имя как в backend
+    const serverTotalMonthlyIncome = safeNumber(
+        serverResult?.totalMonthlyIncome
+    );
+
     const effectiveDividendsMonthly = isServerForCurrentMonth
-        ? serverResult!.dividendsMonthly
+        ? serverDividendsMonthly
         : localComputed.dividendsMonthly;
 
     const effectiveDepositInterestMonthly = isServerForCurrentMonth
-        ? serverResult!.depositInterestMonthly
+        ? serverDepositInterestMonthly
         : localComputed.depositInterestMonthly;
 
     const effectiveExtraMonthly = isServerForCurrentMonth
-        ? serverResult!.extraIncomesMonthly
+        ? serverExtraMonthly
         : localComputed.extraSum;
 
     const effectiveTotalMonthlyIncome = isServerForCurrentMonth
-        ? serverResult!.totalMonthlyIncome
+        ? serverTotalMonthlyIncome
         : localComputed.totalMonthlyIncome;
 
     // --- payload для сохранения ---
@@ -190,12 +207,10 @@ const BudgetIncomePage: React.FC = () => {
             const saved = await budgetIncomeApi.saveIncome(payload);
             setServerResult(saved);
 
-            // Синхронизируем форму и доп. доходы с backend,
-            // чтобы после сохранения всё оставалось на месте.
-            setYearlyDividends(saved.yearlyDividends ?? 0);
-            setDepositAmount(saved.depositAmount ?? 0);
-            setDepositRateYearly(saved.depositRateYearly ?? 0);
-            setSalaryMonthly(saved.salaryMonthly ?? 0);
+            setYearlyDividends(safeNumber(saved.yearlyDividends));
+            setDepositAmount(safeNumber(saved.depositAmount));
+            setDepositRateYearly(safeNumber(saved.depositRateYearly));
+            setSalaryMonthly(safeNumber(saved.salaryMonthly));
 
             if (saved.extraIncomes && saved.extraIncomes.length > 0) {
                 setExtraIncomes(
@@ -244,7 +259,6 @@ const BudgetIncomePage: React.FC = () => {
 
     // --- данные для графиков ---
 
-    // Линия: доход по месяцам
     const lineChartData = useMemo(() => {
         const history = serverResult?.history ?? [];
 
@@ -273,7 +287,6 @@ const BudgetIncomePage: React.FC = () => {
             }));
     }, [serverResult, year, month, effectiveTotalMonthlyIncome]);
 
-    // Круговая: структура дохода
     const pieChartData = useMemo(() => {
         const segments = [
             {
@@ -481,7 +494,6 @@ const BudgetIncomePage: React.FC = () => {
                 <section className="income-card income-card--summary">
                     <h2 className="income-card-title">Итоги месяца</h2>
 
-                    {/* Верхний блок: слева график, справа статус дохода */}
                     <div className="income-summary-layout">
                         <div className="income-chart-box income-chart-box--main">
                             <h3 className="income-chart-title">Доход по месяцам</h3>

@@ -1,5 +1,5 @@
 // src/components/layout/Sidebar.tsx
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./sidebar.css";
 
@@ -13,12 +13,17 @@ type NavSection = {
     items: NavItem[];
 };
 
+type SidebarProps = {
+    open: boolean;      // приходит из AppLayout
+    onClose: () => void; // приходит из AppLayout
+};
+
 const sections: NavSection[] = [
     {
         title: "Бюджет",
         items: [
             { label: "Общий дашборд", path: "/budget/dashboard" },
-            { label: "Учёт финансов", path: "/budget/finance" }, // 👈 НАШ ПУНКТ
+            { label: "Учёт финансов", path: "/budget/finance" },
             { label: "Месячная доходность", path: "/budget/income" },
             { label: "Месячные платежи", path: "/budget/payments" },
         ],
@@ -44,35 +49,27 @@ const sections: NavSection[] = [
     },
 ];
 
-const Sidebar: React.FC = () => {
-    const [open, setOpen] = useState(false);
+const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
     const navigate = useNavigate();
-
-    const handleToggle = () => setOpen((prev) => !prev);
 
     const handleNavigate = (path: string) => {
         navigate(path);
-        setOpen(false);
+        onClose(); // закрываем меню после перехода
     };
+
+    // Если хочешь совсем не рендерить разметку при закрытом меню —
+    // можно раскомментировать блок ниже:
+    //
+    // if (!open) {
+    //     return null;
+    // }
 
     return (
         <>
-            {/* Кнопка-бургер слева сверху */}
-            <button
-                type="button"
-                className="sidebar-burger"
-                onClick={handleToggle}
-                aria-label="Открыть меню"
-            >
-                <span />
-                <span />
-                <span />
-            </button>
-
             {/* Затемнённый фон при открытом меню */}
             <div
                 className={`sidebar-backdrop ${open ? "sidebar-backdrop--open" : ""}`}
-                onClick={handleToggle}
+                onClick={onClose}
             />
 
             {/* Сам выезжающий сайдбар */}

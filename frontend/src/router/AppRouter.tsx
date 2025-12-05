@@ -10,7 +10,7 @@ import BudgetFinancePage from "../pages/budget/BudgetFinancePage";
 import BudgetIncomePage from "../pages/budget/BudgetIncomePage";
 import BudgetPaymentsPage from "../pages/budget/BudgetPaymentsPage";
 
-import TasksPage from "../pages/personal/TasksPage";
+import PersonalTasksPage from "../pages/personal/PersonalTasksPage";
 
 import InstallmentCalcPage from "../pages/banks/InstallmentCalcPage";
 import BankMonitoringPage from "../pages/banks/BankMonitoringPage";
@@ -91,14 +91,14 @@ const AppRouter: React.FC = () => {
                 path="/personal/tasks"
                 element={
                     <PrivateRoute>
-                        <TasksPage />
+                        <PersonalTasksPage />
                     </PrivateRoute>
                 }
             />
 
             {/* BANKS */}
             <Route
-                path="/banks/installment"
+                path="/banks/installment-calc"
                 element={
                     <PrivateRoute>
                         <InstallmentCalcPage />
