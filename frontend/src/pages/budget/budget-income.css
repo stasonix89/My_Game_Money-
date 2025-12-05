@@ -1,0 +1,357 @@
+/* Общий контейнер страницы */
+.budget-income-page {
+    /* отступ от navbar */
+    padding: 120px 32px 40px;
+    max-width: 1280px;
+    margin: 0 auto;
+    color: #f7f1d4;
+}
+
+/* Заголовок и выбор месяца/года */
+.budget-income-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+    margin-bottom: 24px;
+}
+
+.budget-income-title {
+    font-size: 24px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 0 0 8px;
+    color: #f6e27a;
+}
+
+.budget-income-subtitle {
+    margin: 0;
+    font-size: 13px;
+    color: rgba(247, 241, 212, 0.8);
+}
+
+.budget-income-period {
+    display: flex;
+    gap: 16px;
+}
+
+/* Ошибка */
+.budget-income-error {
+    margin-bottom: 16px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: rgba(130, 26, 26, 0.9);
+    border: 1px solid rgba(255, 152, 152, 0.6);
+    font-size: 13px;
+}
+
+/* Сетка: форма + итоги */
+.budget-income-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+    gap: 24px;
+}
+
+/* Карточка */
+.income-card {
+    background:
+            radial-gradient(circle at top, #19191d, #050506);
+    border-radius: 18px;
+    padding: 18px 20px 20px;
+    box-shadow:
+            0 18px 40px rgba(0, 0, 0, 0.9),
+            0 0 0 1px rgba(255, 216, 135, 0.1);
+}
+
+.income-card-title {
+    margin: 0 0 14px;
+    font-size: 16px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #f6e27a;
+}
+
+.income-card--form {
+    align-self: flex-start;
+}
+
+.income-card--summary {
+    align-self: stretch;
+}
+
+/* Лоадер */
+.income-loading {
+    font-size: 13px;
+    color: rgba(247, 241, 212, 0.9);
+    margin-bottom: 10px;
+}
+
+/* Поля формы */
+.income-form-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px 18px;
+    margin-bottom: 18px;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.field-group--flex {
+    flex: 1;
+}
+
+.field-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(247, 241, 212, 0.7);
+}
+
+.field-input,
+.field-select {
+    border-radius: 999px;
+    border: 1px solid rgba(255, 215, 135, 0.28);
+    background: radial-gradient(circle at top, #131316, #050507);
+    padding: 7px 14px;
+    font-size: 13px;
+    color: #f7f1d4;
+    outline: none;
+}
+
+.field-input:focus,
+.field-select:focus {
+    border-color: rgba(255, 231, 170, 0.8);
+    box-shadow: 0 0 0 1px rgba(255, 231, 170, 0.6);
+}
+
+/* Дополнительные доходы */
+.income-extra-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.income-extra-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(246, 226, 122, 0.9);
+    margin: 0;
+}
+
+.income-extra-list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.income-extra-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+/* Кнопки */
+.income-actions {
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-primary {
+    border: none;
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    cursor: pointer;
+    color: #171717;
+    background: linear-gradient(90deg, #f6e27a, #f6d365);
+    box-shadow:
+            0 0 0 1px rgba(0, 0, 0, 0.6),
+            0 10px 20px rgba(0, 0, 0, 0.7);
+    transition:
+            transform 0.15s ease,
+            box-shadow 0.15s ease,
+            filter 0.15s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.03);
+    box-shadow:
+            0 0 0 1px rgba(0, 0, 0, 0.9),
+            0 14px 30px rgba(0, 0, 0, 0.9);
+}
+
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: default;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-ghost {
+    border-radius: 999px;
+    border: 1px solid rgba(246, 226, 122, 0.8);
+    background: transparent;
+    color: #f6e27a;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 5px 12px;
+    cursor: pointer;
+    transition:
+            background-color 0.15s ease,
+            color 0.15s ease;
+}
+
+.btn-ghost:hover {
+    background: rgba(246, 226, 122, 0.1);
+}
+
+.btn-icon {
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: transparent;
+    color: rgba(247, 241, 212, 0.9);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-icon:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+/* Итоги месяца */
+.income-summary-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 10px 18px;
+    margin-bottom: 18px;
+}
+
+.income-summary-block {
+    padding: 8px 10px;
+    border-radius: 12px;
+    background: radial-gradient(circle at top, #202027, #050506);
+}
+
+.income-summary-block--total {
+    grid-column: 1 / -1;
+    border: 1px solid rgba(246, 226, 122, 0.5);
+    background: radial-gradient(circle at top, #26262f, #070708);
+}
+
+.income-summary-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    color: rgba(247, 241, 212, 0.7);
+    margin-bottom: 4px;
+}
+
+.income-summary-value {
+    font-size: 15px;
+}
+
+.income-summary-value--accent {
+    font-size: 18px;
+    color: #f6e27a;
+}
+
+/* Графики */
+.income-charts {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 12px;
+}
+
+.income-chart-box {
+    border-radius: 14px;
+    padding: 10px 12px;
+    background: radial-gradient(circle at top, #17171d, #050506);
+}
+
+.income-chart-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(247, 241, 212, 0.85);
+    margin: 0 0 4px;
+}
+
+/* Адаптив */
+@media (max-width: 980px) {
+    .budget-income-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .budget-income-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .budget-income-period {
+        align-self: flex-start;
+    }
+
+    .income-charts {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 720px) {
+    .budget-income-page {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .income-form-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* Стили для выпадающего списка (select) */
+.filters select {
+    background: #111; /* Тёмный фон для соответствия теме */
+    border: 1px solid #444; /* Граница для выделения */
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: #f5f5f5; /* Белый цвет для текста */
+    font-size: 13px;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Эффекты при наведении и фокусе */
+.filters select:hover {
+    background: #222; /* Немного темнее фон при наведении */
+}
+
+.filters select:focus {
+    outline: none; /* Убираем стандартный фокус */
+    border-color: #ffd700; /* Яркое выделение при фокусе */
+}
+.budget-income-period select {
+    background: #111;
+    color: #f5f5f5;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 215, 135, 0.28);
+    padding: 6px 14px;
+    font-size: 13px;
+}
+
+.budget-income-period option {
+    background: #111;
+    color: #f5f5f5;
+}

@@ -1,0 +1,158 @@
+/* ===========================
+   ГЛОБАЛЬНАЯ ТЕМА
+=========================== */
+
+:root {
+    --text-gold: #d6af60;
+    --text-gold-bright: #f8e6b0;
+    --text-gold-dark: #8a6a30;
+
+    --gold-gradient: linear-gradient(
+            90deg,
+            #c49d48 0%,
+            #f5d68e 15%,
+            #fff2c7 30%,
+            #f1d28b 45%,
+            #c89c45 60%,
+            #a2792e 100%
+    );
+
+    --gold-shadow: 0 0 10px rgba(255, 230, 150, 0.25);
+
+    --bg-dark: #050608;
+}
+
+/* ===========================
+   ОБЩИЕ СБРОСЫ
+=========================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    background-color: #000; /* базовый черный */
+    color: #f5f5f5;
+}
+
+/* Фон кожи — ПРАВИЛЬНО через before */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background-image: url("public/black_leather_texture.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+
+    opacity: 0.8;            /* ← супер приглушенный фон */
+    filter: contrast(0.4)
+    brightness(0.1); /* ← почти черный */
+
+
+
+    font-family: "Montserrat", system-ui, sans-serif;
+    color: #fff;
+}
+
+/* ===========================
+   ЗАГОЛОВКИ ЗОЛОТОМ
+=========================== */
+
+.gold-title {
+    font-size: 42px;
+    font-weight: 700;
+
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    position: relative;
+    display: inline-block;
+
+    text-shadow: var(--gold-shadow);
+
+    /* нужный стиль: монолитный, премиальный */
+    letter-spacing: 2px;
+}
+
+/* ===========================
+   БЛИК НА ТЕКСТЕ
+=========================== */
+
+.gold-title::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+
+    background: linear-gradient(
+            120deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.25) 50%,
+            rgba(255, 255, 255, 0) 100%
+    );
+
+    transform: skewX(-20deg);
+    animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+    0% {
+        left: -150%;
+    }
+    100% {
+        left: 150%;
+    }
+}
+
+/* ===========================
+   ПОЛОСА СНИЗУ ПРИ НАВЕДЕНИИ
+=========================== */
+
+.gold-title-line {
+    position: relative;
+    display: inline-block;
+}
+
+.gold-title-line::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+
+    background: var(--gold-gradient);
+    border-radius: 4px;
+
+    transform: translateX(-50%);
+    transition: width 0.9s ease; /* медленнее: 0.9s */
+}
+
+.gold-title-line:hover::after {
+    width: 100%;
+}
+
+/* ===========================
+   ЛЕЙАУТ И СТРАНИЦЫ
+=========================== */
+
+.page-container {
+    padding: 30px 60px;
+}
+
+.page-title {
+    margin: 0 0 12px 0;
+}
+
+.page-description {
+    margin-top: 4px;
+    opacity: 0.7;
+}

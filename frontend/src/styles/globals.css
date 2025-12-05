@@ -1,0 +1,65 @@
+/* src/styles/globals.css */
+
+/* --- CSS-переменные для темы --- */
+:root {
+    --bg-main: #050608;
+    --bg-elevated: #101218;
+    --bg-elevated-soft: #090b10;
+
+    --accent-gold-from: #f6e27a;
+    --accent-gold-to: #e2ad3f;
+
+    --text-main: #f5f5f7;
+    --text-muted: #8f9299;
+    --border-subtle: rgba(255, 255, 255, 0.06);
+}
+
+/* --- Сброс/база --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+    background: radial-gradient(circle at top, #11131a 0, #050608 55%);
+    color: var(--text-main);
+}
+
+/* --- Общий каркас приложения --- */
+.app-root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-main {
+    flex: 1;
+    padding: 24px;
+}
+
+.app-main-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Чуть-чуть красоты для h1, чтобы не было совсем голо */
+h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+p {
+    color: var(--text-muted);
+    font-size: 14px;
+}

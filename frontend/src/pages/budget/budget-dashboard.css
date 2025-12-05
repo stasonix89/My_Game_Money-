@@ -1,0 +1,260 @@
+/* Общий контейнер дашборда */
+.budget-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Заголовок + будущее место для выбора месяца */
+.budget-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+/* Сетка виджетов: 2 колонки на десктопе, 1 колонка на мобилках */
+.budget-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+@media (max-width: 960px) {
+    .budget-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* Карточка виджета */
+.widget-card {
+    background: linear-gradient(
+            145deg,
+            rgba(10, 10, 14, 0.9),
+            rgba(16, 16, 22, 0.9)
+    );
+    border-radius: 18px;
+    padding: 20px 22px;
+    border: 1px solid rgba(255, 232, 170, 0.09);
+    box-shadow:
+            0 18px 40px rgba(0, 0, 0, 0.8),
+            0 0 0 1px rgba(0, 0, 0, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Тонкая золотая линия сверху */
+.widget-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    height: 3px;
+    background: linear-gradient(
+            90deg,
+            rgba(255, 223, 160, 0.1),
+            rgba(255, 223, 160, 0.6),
+            rgba(255, 223, 160, 0.1)
+    );
+    opacity: 0.9;
+}
+
+/* Заголовок виджета + кнопка справа */
+.widget-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.widget-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Кнопка-ссылка в стиле T-банк */
+.widget-link-button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 999px;
+
+    font-size: 13px;
+    letter-spacing: 0.03em;
+
+    background: rgba(255, 235, 180, 0.04);
+    color: #f6e3b2;
+    border: 1px solid rgba(255, 235, 180, 0.25);
+
+    transition:
+            background 0.2s ease,
+            transform 0.15s ease,
+            box-shadow 0.2s ease;
+}
+
+.widget-link-button:hover {
+    background: rgba(255, 235, 180, 0.12);
+    box-shadow: 0 0 14px rgba(255, 235, 180, 0.22);
+    transform: translateY(-1px);
+}
+
+/* Тело виджета */
+.widget-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Строка с показателем */
+.widget-stat-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 14px;
+}
+
+.widget-stat-label {
+    opacity: 0.75;
+}
+
+.widget-stat-value {
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+}
+
+.widget-stat-value.highlight {
+    font-size: 18px;
+    background: linear-gradient(90deg, #ffdca2, #fff2c7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 18px rgba(255, 230, 170, 0.3);
+}
+
+.widget-stat-row.widget-stat-highlight {
+    margin-top: 4px;
+}
+
+/* Цвета значений */
+.widget-stat-value.negative {
+    color: #ff8f8f;
+}
+
+.widget-stat-value.positive {
+    color: #85e8a8;
+}
+
+/* Разделитель */
+.widget-divider {
+    margin: 10px 0;
+    height: 1px;
+    background: radial-gradient(
+            circle,
+            rgba(255, 235, 180, 0.35),
+            rgba(255, 235, 180, 0)
+    );
+    opacity: 0.5;
+}
+
+/* Мини-график доходов (пока простая колонковая диаграмма) */
+.income-mini-chart {
+    margin-top: 6px;
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 60px;
+}
+
+.income-bar {
+    flex: 1;
+    border-radius: 999px 999px 2px 2px;
+    background: linear-gradient(
+            180deg,
+            rgba(255, 235, 180, 0.9),
+            rgba(255, 235, 180, 0.05)
+    );
+    box-shadow: 0 0 12px rgba(255, 235, 180, 0.25);
+}
+
+.income-mini-chart-caption {
+    margin-top: 4px;
+    font-size: 11px;
+    opacity: 0.65;
+}
+
+/* Превью таблицы платежей */
+.payments-table-preview {
+    margin-top: 4px;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.payments-table-header,
+.payments-table-row {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr 1.2fr 1fr;
+    gap: 8px;
+    align-items: center;
+}
+
+.payments-table-header {
+    opacity: 0.6;
+    font-size: 12px;
+    border-bottom: 1px solid rgba(255, 235, 180, 0.12);
+    padding-bottom: 4px;
+}
+
+.payments-table-row {
+    padding: 3px 0;
+}
+
+.payments-cell-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.payments-bank {
+    font-weight: 500;
+}
+
+.payments-card {
+    font-size: 11px;
+    opacity: 0.7;
+}
+
+/* Теги статуса */
+.tag-paid,
+.tag-planned {
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    text-align: center;
+}
+
+.tag-paid {
+    background: rgba(133, 232, 168, 0.1);
+    color: #86f0af;
+    border: 1px solid rgba(133, 232, 168, 0.4);
+}
+
+.tag-planned {
+    background: rgba(255, 235, 180, 0.02);
+    color: #fce1a0;
+    border: 1px solid rgba(255, 235, 180, 0.25);
+}
+
+.payments-more {
+    margin-top: 4px;
+    font-size: 11px;
+    opacity: 0.7;
+}
+
+/* Текст ошибки */
+.error-text {
+    color: #ff8f8f;
+}

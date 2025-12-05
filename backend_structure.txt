@@ -1,0 +1,412 @@
+Структура папок
+Серийный номер тома: 82B9-5ADA
+C:\USERS\1\DESKTOP\GAMEMONEY\THE MONEY GAME\BACKEND
+|   .dockerignore
+|   .gitattributes
+|   .gitignore
+|   docker-compose.yml
+|   Dockerfile
+|   HELP.md
+|   hs_err_pid45880.log
+|   mvnw
+|   mvnw.cmd
+|   nginx.conf
+|   pom.xml
+|   replay_pid45880.log
+|   
++---.mvn
+|   \---wrapper
+|           maven-wrapper.properties
+|           
++---src
+|   +---main
+|   |   +---java
+|   |   |   \---com
+|   |   |       \---themoneygame
+|   |   |           |   TheMoneyGameApplication.java
+|   |   |           |   
+|   |   |           +---auth
+|   |   |           |   +---application
+|   |   |           |   |       RootUserInitializer.java
+|   |   |           |   |       UserDetailsImpl.java
+|   |   |           |   |       UserDetailsServiceImpl.java
+|   |   |           |   |       
+|   |   |           |   +---domain
+|   |   |           |   |       Role.java
+|   |   |           |   |       RoleType.java
+|   |   |           |   |       User.java
+|   |   |           |   |       
+|   |   |           |   +---infrastructure
+|   |   |           |   |       RoleRepository.java
+|   |   |           |   |       UserRepository.java
+|   |   |           |   |       
+|   |   |           |   \---web
+|   |   |           |       |   AuthController.java
+|   |   |           |       |   
+|   |   |           |       \---dto
+|   |   |           |               AuthResponse.java
+|   |   |           |               LoginRequest.java
+|   |   |           |               
+|   |   |           +---banks
+|   |   |           |   +---installment
+|   |   |           |   |   |   InstallmentCalculation.java
+|   |   |           |   |   |   InstallmentCalculationRepository.java
+|   |   |           |   |   |   InstallmentController.java
+|   |   |           |   |   |   InstallmentService.java
+|   |   |           |   |   |   InstallmentServiceImpl.java
+|   |   |           |   |   |   
+|   |   |           |   |   \---dto
+|   |   |           |   |           BenefitBars.java
+|   |   |           |   |           InstallmentRequest.java
+|   |   |           |   |           InstallmentResponse.java
+|   |   |           |   |           
+|   |   |           |   \---monitoring
+|   |   |           |       +---controller
+|   |   |           |       |       BankMonitoringController.java
+|   |   |           |       |       
+|   |   |           |       +---domain
+|   |   |           |       |       BankOffer.java
+|   |   |           |       |       ProductType.java
+|   |   |           |       |       
+|   |   |           |       +---dto
+|   |   |           |       |       BankOfferResponse.java
+|   |   |           |       |       
+|   |   |           |       +---repository
+|   |   |           |       |       BankOfferRepository.java
+|   |   |           |       |       
+|   |   |           |       \---service
+|   |   |           |               BankMonitoringService.java
+|   |   |           |               BankMonitoringServiceImpl.java
+|   |   |           |               
+|   |   |           +---budget
+|   |   |           |   +---application
+|   |   |           |   |       AccountService.java
+|   |   |           |   |       MonthlyIncomeService.java
+|   |   |           |   |       MonthlyPaymentService.java
+|   |   |           |   |       TransactionService.java
+|   |   |           |   |       
+|   |   |           |   +---dashboard
+|   |   |           |   |       BudgetDashboardController.java
+|   |   |           |   |       BudgetDashboardDto.java
+|   |   |           |   |       BudgetDashboardService.java
+|   |   |           |   |       BudgetDashboardServiceImpl.java
+|   |   |           |   |       
+|   |   |           |   +---domain
+|   |   |           |   |   |   Account.java
+|   |   |           |   |   |   MonthlyIncome.java
+|   |   |           |   |   |   MonthlyPayment.java
+|   |   |           |   |   |   Transaction.java
+|   |   |           |   |   |   
+|   |   |           |   |   \---enums
+|   |   |           |   |           AccountType.java
+|   |   |           |   |           CategoryType.java
+|   |   |           |   |           TransactionType.java
+|   |   |           |   |           
+|   |   |           |   +---infrastructure
+|   |   |           |   |       AccountRepository.java
+|   |   |           |   |       MonthlyIncomeRepository.java
+|   |   |           |   |       MonthlyPaymentRepository.java
+|   |   |           |   |       TransactionRepository.java
+|   |   |           |   |       
+|   |   |           |   \---web
+|   |   |           |           BudgetController.java
+|   |   |           |           MonthlyIncomeController.java
+|   |   |           |           MonthlyPaymentController.java
+|   |   |           |           TransactionController.java
+|   |   |           |           
+|   |   |           +---core
+|   |   |           |   \---config
+|   |   |           |           CookieConfig.java
+|   |   |           |           SecurityConfig.java
+|   |   |           |           WebConfig.java
+|   |   |           |           
+|   |   |           +---investments
+|   |   |           |   +---averageprice
+|   |   |           |   |   |   AveragePriceCalculation.java
+|   |   |           |   |   |   AveragePriceCalculationRepository.java
+|   |   |           |   |   |   AveragePriceController.java
+|   |   |           |   |   |   AveragePriceService.java
+|   |   |           |   |   |   AveragePriceServiceImpl.java
+|   |   |           |   |   |   CalculationMode.java
+|   |   |           |   |   |   
+|   |   |           |   |   \---dto
+|   |   |           |   |           AveragePriceRequest.java
+|   |   |           |   |           AveragePriceResponse.java
+|   |   |           |   |           
+|   |   |           |   +---inflation
+|   |   |           |   |   |   CapitalInflationController.java
+|   |   |           |   |   |   CapitalInflationRepository.java
+|   |   |           |   |   |   CapitalInflationScenario.java
+|   |   |           |   |   |   CapitalInflationService.java
+|   |   |           |   |   |   CapitalInflationServiceImpl.java
+|   |   |           |   |   |   
+|   |   |           |   |   \---dto
+|   |   |           |   |           CapitalInflationRequest.java
+|   |   |           |   |           CapitalInflationResponse.java
+|   |   |           |   |           CapitalInflationYearPoint.java
+|   |   |           |   |           
+|   |   |           |   \---monitoring
+|   |   |           |       +---controller
+|   |   |           |       |       MarketMonitoringController.java
+|   |   |           |       |       
+|   |   |           |       +---domain
+|   |   |           |       |       AssetType.java
+|   |   |           |       |       MarketAsset.java
+|   |   |           |       |       UserWatchlistEntry.java
+|   |   |           |       |       
+|   |   |           |       +---dto
+|   |   |           |       |       MarketAssetResponse.java
+|   |   |           |       |       WatchlistItemResponse.java
+|   |   |           |       |       WatchlistModifyRequest.java
+|   |   |           |       |       
+|   |   |           |       +---repository
+|   |   |           |       |       MarketAssetRepository.java
+|   |   |           |       |       UserWatchlistRepository.java
+|   |   |           |       |       
+|   |   |           |       \---service
+|   |   |           |               MarketMonitoringService.java
+|   |   |           |               MarketMonitoringServiceImpl.java
+|   |   |           |               
+|   |   |           \---personal
+|   |   |               \---tasks
+|   |   |                   +---controller
+|   |   |                   |       TaskController.java
+|   |   |                   |       
+|   |   |                   +---domain
+|   |   |                   |       Task.java
+|   |   |                   |       TaskStatus.java
+|   |   |                   |       TaskType.java
+|   |   |                   |       
+|   |   |                   +---dto
+|   |   |                   |       TaskRequest.java
+|   |   |                   |       TaskResponse.java
+|   |   |                   |       TaskTypeRequest.java
+|   |   |                   |       TaskTypeResponse.java
+|   |   |                   |       
+|   |   |                   +---repository
+|   |   |                   |       TaskRepository.java
+|   |   |                   |       TaskTypeRepository.java
+|   |   |                   |       
+|   |   |                   \---service
+|   |   |                           TaskService.java
+|   |   |                           TaskServiceImpl.java
+|   |   |                           
+|   |   \---resources
+|   |       |   application.properties
+|   |       |   
+|   |       +---static
+|   |       \---templates
+|   \---test
+|       \---java
+|           \---com
+|               \---themoneygame
+|                       TheMoneyGameApplicationTests.java
+|                       
+\---target
+    |   backend-0.0.1-SNAPSHOT.jar
+    |   backend-0.0.1-SNAPSHOT.jar.original
+    |   
+    +---classes
+    |   |   application.properties
+    |   |   
+    |   \---com
+    |       \---themoneygame
+    |           |   TheMoneyGameApplication.class
+    |           |   
+    |           +---auth
+    |           |   +---application
+    |           |   |       RootUserInitializer.class
+    |           |   |       UserDetailsImpl.class
+    |           |   |       UserDetailsServiceImpl.class
+    |           |   |       
+    |           |   +---domain
+    |           |   |       Role.class
+    |           |   |       RoleType.class
+    |           |   |       User.class
+    |           |   |       
+    |           |   +---infrastructure
+    |           |   |       RoleRepository.class
+    |           |   |       UserRepository.class
+    |           |   |       
+    |           |   \---web
+    |           |       |   AuthController$AuthUser.class
+    |           |       |   AuthController$LoginRequest.class
+    |           |       |   AuthController$LoginResponse.class
+    |           |       |   AuthController.class
+    |           |       |   
+    |           |       \---dto
+    |           |               AuthResponse.class
+    |           |               LoginRequest.class
+    |           |               
+    |           +---banks
+    |           |   +---installment
+    |           |   |   |   InstallmentCalculation.class
+    |           |   |   |   InstallmentCalculationRepository.class
+    |           |   |   |   InstallmentController.class
+    |           |   |   |   InstallmentService.class
+    |           |   |   |   InstallmentServiceImpl.class
+    |           |   |   |   
+    |           |   |   \---dto
+    |           |   |           BenefitBars.class
+    |           |   |           InstallmentRequest.class
+    |           |   |           InstallmentResponse.class
+    |           |   |           
+    |           |   \---monitoring
+    |           |       +---controller
+    |           |       |       BankMonitoringController.class
+    |           |       |       
+    |           |       +---domain
+    |           |       |       BankOffer.class
+    |           |       |       ProductType.class
+    |           |       |       
+    |           |       +---dto
+    |           |       |       BankOfferResponse.class
+    |           |       |       
+    |           |       +---repository
+    |           |       |       BankOfferRepository.class
+    |           |       |       
+    |           |       \---service
+    |           |               BankMonitoringService.class
+    |           |               BankMonitoringServiceImpl.class
+    |           |               
+    |           +---budget
+    |           |   +---application
+    |           |   |       AccountService.class
+    |           |   |       MonthlyIncomeService.class
+    |           |   |       MonthlyPaymentService.class
+    |           |   |       TransactionService.class
+    |           |   |       
+    |           |   +---dashboard
+    |           |   |       BudgetDashboardController.class
+    |           |   |       BudgetDashboardDto$FinanceWidget.class
+    |           |   |       BudgetDashboardDto$IncomeWidget.class
+    |           |   |       BudgetDashboardDto$PaymentRow.class
+    |           |   |       BudgetDashboardDto$PaymentsWidget.class
+    |           |   |       BudgetDashboardDto.class
+    |           |   |       BudgetDashboardService.class
+    |           |   |       BudgetDashboardServiceImpl.class
+    |           |   |       
+    |           |   +---domain
+    |           |   |   |   Account.class
+    |           |   |   |   MonthlyIncome.class
+    |           |   |   |   MonthlyPayment.class
+    |           |   |   |   Transaction.class
+    |           |   |   |   
+    |           |   |   \---enums
+    |           |   |           AccountType.class
+    |           |   |           CategoryType.class
+    |           |   |           TransactionType.class
+    |           |   |           
+    |           |   +---infrastructure
+    |           |   |       AccountRepository.class
+    |           |   |       MonthlyIncomeRepository.class
+    |           |   |       MonthlyPaymentRepository.class
+    |           |   |       TransactionRepository.class
+    |           |   |       
+    |           |   \---web
+    |           |           BudgetController.class
+    |           |           MonthlyIncomeController.class
+    |           |           MonthlyPaymentController.class
+    |           |           TransactionController.class
+    |           |           
+    |           +---core
+    |           |   \---config
+    |           |           CookieConfig.class
+    |           |           SecurityConfig.class
+    |           |           WebConfig.class
+    |           |           
+    |           +---investments
+    |           |   +---averageprice
+    |           |   |   |   AveragePriceCalculation.class
+    |           |   |   |   AveragePriceCalculationRepository.class
+    |           |   |   |   AveragePriceController.class
+    |           |   |   |   AveragePriceService.class
+    |           |   |   |   AveragePriceServiceImpl.class
+    |           |   |   |   CalculationMode.class
+    |           |   |   |   
+    |           |   |   \---dto
+    |           |   |           AveragePriceRequest.class
+    |           |   |           AveragePriceResponse.class
+    |           |   |           
+    |           |   +---inflation
+    |           |   |   |   CapitalInflationController.class
+    |           |   |   |   CapitalInflationRepository.class
+    |           |   |   |   CapitalInflationScenario.class
+    |           |   |   |   CapitalInflationService.class
+    |           |   |   |   CapitalInflationServiceImpl.class
+    |           |   |   |   
+    |           |   |   \---dto
+    |           |   |           CapitalInflationRequest.class
+    |           |   |           CapitalInflationResponse.class
+    |           |   |           CapitalInflationYearPoint.class
+    |           |   |           
+    |           |   \---monitoring
+    |           |       +---controller
+    |           |       |       MarketMonitoringController.class
+    |           |       |       
+    |           |       +---domain
+    |           |       |       AssetType.class
+    |           |       |       MarketAsset.class
+    |           |       |       UserWatchlistEntry.class
+    |           |       |       
+    |           |       +---dto
+    |           |       |       MarketAssetResponse.class
+    |           |       |       WatchlistItemResponse.class
+    |           |       |       WatchlistModifyRequest.class
+    |           |       |       
+    |           |       +---repository
+    |           |       |       MarketAssetRepository.class
+    |           |       |       UserWatchlistRepository.class
+    |           |       |       
+    |           |       \---service
+    |           |               MarketMonitoringService.class
+    |           |               MarketMonitoringServiceImpl.class
+    |           |               
+    |           \---personal
+    |               \---tasks
+    |                   +---controller
+    |                   |       TaskController.class
+    |                   |       
+    |                   +---domain
+    |                   |       Task.class
+    |                   |       TaskStatus.class
+    |                   |       TaskType.class
+    |                   |       
+    |                   +---dto
+    |                   |       TaskRequest.class
+    |                   |       TaskResponse.class
+    |                   |       TaskTypeRequest.class
+    |                   |       TaskTypeResponse.class
+    |                   |       
+    |                   +---repository
+    |                   |       TaskRepository.class
+    |                   |       TaskTypeRepository.class
+    |                   |       
+    |                   \---service
+    |                           TaskService.class
+    |                           TaskServiceImpl.class
+    |                           
+    +---generated-sources
+    |   \---annotations
+    +---generated-test-sources
+    |   \---test-annotations
+    +---maven-archiver
+    |       pom.properties
+    |       
+    +---maven-status
+    |   \---maven-compiler-plugin
+    |       +---compile
+    |       |   \---default-compile
+    |       |           createdFiles.lst
+    |       |           inputFiles.lst
+    |       |           
+    |       \---testCompile
+    |           \---default-testCompile
+    |                   createdFiles.lst
+    |                   inputFiles.lst
+    |                   
+    \---test-classes
+        \---com
+            \---themoneygame
+                    TheMoneyGameApplicationTests.class
+                    

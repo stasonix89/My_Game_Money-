@@ -1,0 +1,254 @@
+/* === ВЕРХНЯЯ ШАПКА НА САЙТЕ ====================================== */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    background: radial-gradient(circle at top, #1a1b20 0%, #07080b 55%, #030304 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+
+
+/* === ВЕРХНЯЯ ПОЛОСА: MY GAME MONEY =============================== */
+
+.navbar-top {
+    width: 100%;
+    padding: 10px 32px 6px;
+    background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.95),
+            rgba(0, 0, 0, 0.9)
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* контейнер заголовка + зона клика/дропа */
+.navbar-title-container {
+    position: relative;
+    cursor: pointer;
+}
+
+/* текст MY GAME MONEY — золотой градиент + лёгкий блик */
+.navbar-title-glow {
+    font-family: "Cinzel", "Times New Roman", serif;
+    font-size: 24px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    background: linear-gradient(
+            90deg,
+            #b78a3a 0%,
+            #f6e27a 20%,
+            #f6d365 50%,
+            #f6e27a 80%,
+            #b78a3a 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    text-shadow:
+            0 0 6px rgba(0, 0, 0, 0.9),
+            0 0 16px rgba(255, 220, 150, 0.35);
+    transition:
+            transform 0.35s ease,
+            text-shadow 0.35s ease,
+            filter 0.35s ease;
+}
+
+/* лёгкое «оживание» при наведении */
+.navbar-title-container:hover .navbar-title-glow {
+    transform: translateY(-1px);
+    text-shadow:
+            0 0 10px rgba(0, 0, 0, 1),
+            0 0 26px rgba(255, 230, 170, 0.6);
+    filter: brightness(1.1);
+}
+
+/* дропдаун, который открывается из заголовка (рендерится условно в React) */
+.navbar-title-dropdown {
+    position: absolute;
+    top: 130%;
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    min-width: 260px;
+    padding: 8px 0;
+    background: radial-gradient(circle at top, #191919, #050505);
+    border-radius: 12px;
+    box-shadow:
+            0 18px 44px rgba(0, 0, 0, 0.85),
+            0 0 0 1px rgba(255, 216, 135, 0.2);
+    z-index: 80;
+}
+
+.navbar-title-dropdown-item {
+    width: 100%;
+    padding: 7px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #f7f1d4;
+    font-size: 13px;
+    text-align: left;
+}
+
+.navbar-title-dropdown-text {
+    flex: 1;
+    transition: color 0.2s ease;
+}
+
+.navbar-title-dropdown-item:hover .navbar-title-dropdown-text {
+    color: #ffe9b7;
+}
+
+
+/* === НИЖНЯЯ ПОЛОСА НАВИГАЦИИ ===================================== */
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 3.5rem;
+    padding: 10px 32px 12px;
+    background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.9),
+            rgba(0, 0, 0, 0.85),
+            rgba(0, 0, 0, 0.92)
+    );
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 215, 128, 0.25);
+}
+
+.navbar-nav-item {
+    position: relative;
+}
+
+/* Кнопки: Инвестиции / Банки / Личное / Бюджет */
+.navbar-nav-link {
+    position: relative;
+    border: none;
+    background: transparent;
+    color: #f4e0a6;
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 4px 0;
+    cursor: pointer;
+    transition: color 0.25s ease;
+}
+
+/* Подчёркивание снизу — растёт от центра */
+.navbar-nav-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0) 0%,
+            #f6e27a 25%,
+            #f6d365 50%,
+            #f6e27a 75%,
+            rgba(0, 0, 0, 0) 100%
+    );
+    opacity: 0;
+    transition:
+            width 0.6s ease,
+            left 0.6s ease,
+            opacity 0.4s ease;
+}
+
+.navbar-nav-link:hover,
+.navbar-nav-link--active {
+    color: #ffe9b7;
+}
+
+.navbar-nav-link:hover::after,
+.navbar-nav-link--active::after {
+    width: 100%;
+    left: 0;
+    opacity: 1;
+}
+
+
+/* === ВЫПАДАЮЩЕЕ МЕНЮ ПОД ПУНКТОМ ================================ */
+/* Само появление/скрытие управляет React (isOpen), здесь только визуал */
+
+.navbar-dropdown {
+    position: absolute;
+    top: 140%;
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    min-width: 260px;
+    padding: 10px 0;
+    background: radial-gradient(circle at top, #1b1b1b, #050505);
+    border-radius: 14px;
+    box-shadow:
+            0 16px 40px rgba(0, 0, 0, 0.85),
+            0 0 0 1px rgba(255, 216, 135, 0.12);
+    z-index: 50;
+}
+
+/* строка внутри дропдауна */
+.navbar-dropdown-link {
+    position: relative;
+    width: 100%;
+    padding: 8px 20px;
+    text-align: left;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #f7f1d4;
+    font-size: 13px;
+}
+
+.navbar-dropdown-link:hover .dropdown-text {
+    color: #ffe9b7;
+}
+
+/* золотые уголки слева/справа */
+.dropdown-corner {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    border: 1.5px solid transparent;
+    opacity: 0.9;
+    background:
+            linear-gradient(#000, #000) padding-box,
+            linear-gradient(135deg, rgba(255, 255, 255, 0.0), #f6e27a, #f6d365)
+            border-box;
+}
+
+.dropdown-corner--left {
+    border-right: none;
+}
+
+.dropdown-corner--right {
+    margin-left: auto;
+    border-left: none;
+}
+
+.dropdown-text {
+    flex: 1;
+    transition: color 0.2s ease;
+}

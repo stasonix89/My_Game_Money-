@@ -1,0 +1,313 @@
+.budget-payments-page {
+    padding: 24px;
+    color: #f5f5f5;
+}
+
+/* Заголовок */
+.budget-page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 16px;
+}
+
+.budget-page-header h1 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.budget-page-header .hint {
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+/* Панель фильтров + кнопка */
+.payments-toolbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.filters select {
+    background: #111;
+    border: 1px solid #444;
+    border-radius: 999px;
+    padding: 6px 12px;
+    color: #f5f5f5;
+    font-size: 13px;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.filters select:hover {
+    background: #222;
+}
+
+.filters select:focus {
+    outline: none;
+    border-color: #ffd700;
+}
+
+/* Кнопка "Добавить платёж" */
+.add-button-wrapper {
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn {
+    font-size: 11px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background: #222;
+    color: #f5f5f5;
+    transition: background 0.15s ease, transform 0.05s ease;
+}
+
+.btn:hover:not(:disabled) {
+    background: #333;
+    transform: translateY(-1px);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.btn-secondary {
+    border: 1px solid #555;
+}
+
+.btn-add-payment {
+    font-weight: 600;
+    background: #111;
+    border: 1px solid #ffd700;
+    padding: 8px 16px;
+    border-radius: 999px;
+    color: #f5f5f5;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-add-payment:hover:not(:disabled) {
+    background: #333;
+    transform: translateY(-2px);
+}
+
+/* Статусные сообщения */
+.loading,
+.error {
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.error {
+    color: #ff8080;
+}
+
+/* Таблица платежей */
+.payments-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.payments-table th,
+.payments-table td {
+    padding: 8px 10px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+.payments-table thead {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.payments-table th {
+    text-align: left;
+    font-weight: 500;
+}
+
+.row-planned {
+    background: rgba(255, 215, 0, 0.02);
+}
+
+.row-paid {
+    background: rgba(0, 128, 0, 0.1);
+}
+
+.empty-row {
+    text-align: center;
+    padding: 16px;
+    opacity: 0.7;
+}
+
+/* Бейдж статуса */
+.status-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+}
+
+.status-badge.planned {
+    border: 1px solid rgba(255, 215, 0, 0.7);
+    color: #ffd700;
+}
+
+.status-badge.paid {
+    border: 1px solid rgba(80, 200, 120, 0.8);
+    color: #a5ffbf;
+}
+
+/* Модалка добавления платежа */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75); /* затемнение как в MGM */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: radial-gradient(circle at top, #19191f, #050506);
+    border-radius: 18px;
+    padding: 20px 22px;
+    min-width: 320px;
+    max-width: 420px;
+    box-shadow:
+            0 24px 50px rgba(0, 0, 0, 0.95),
+            0 0 0 1px rgba(255, 216, 135, 0.24);
+    border: 1px solid rgba(255, 215, 0, 0.45);
+    color: #f5f5f5;
+    z-index: 1001;
+}
+
+.modal h2 {
+    margin: 0 0 12px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13px;
+}
+
+.modal-field label {
+    opacity: 0.85;
+}
+
+.modal-field input {
+    background: #111;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 6px 8px;
+    color: #f5f5f5;
+    font-size: 13px;
+}
+
+.modal-field input:disabled {
+    opacity: 0.7;
+}
+
+.modal-field input:focus {
+    outline: none;
+    border-color: #ffd700;
+}
+
+/* Кнопки в модалке */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+/* Стили для формы входа — оставляю, как ты добавил */
+.login-form {
+    background: rgba(10, 10, 10, 0.9);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.login-form input {
+    background: #111;
+    color: #f5f5f5;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.login-form input:focus {
+    border-color: #ffd700;
+    outline: none;
+}
+
+.login-form button {
+    background: #ffd700;
+    color: #111;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.login-form button:hover {
+    background: #e0c200;
+    transform: translateY(-2px);
+}
+
+.login-form button:disabled {
+    background: #888;
+    cursor: not-allowed;
+}
+
+/* Адаптив */
+@media (max-width: 720px) {
+    .budget-payments-page {
+        padding: 16px;
+    }
+
+    .payments-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .add-button-wrapper {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .add-button-wrapper .btn-add-payment {
+        width: 100%;
+    }
+}

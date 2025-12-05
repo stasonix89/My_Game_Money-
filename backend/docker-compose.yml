@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:16
+    container_name: mgm-db
+    environment:
+      POSTGRES_DB: mgm_db
+      POSTGRES_USER: mgm_user
+      POSTGRES_PASSWORD: mgm_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mgm-backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/mgm_db
+      SPRING_DATASOURCE_USERNAME: mgm_user
+      SPRING_DATASOURCE_PASSWORD: mgm_pass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8081:8080"   # снаружи 8081 -> внутри контейнера 8080
+
+volumes:
+  pgdata:

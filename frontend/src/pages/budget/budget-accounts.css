@@ -1,0 +1,268 @@
+/* src/pages/budget/budget-accounts.css */
+
+/* Заголовок блока счетов */
+.accounts-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+/* Таблица счетов */
+.accounts-table {
+    margin-top: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.accounts-header-row,
+.accounts-row {
+    display: grid;
+    grid-template-columns: 1.1fr 1.8fr 1fr 1fr 1fr 1.6fr;
+    gap: 8px;
+    padding: 7px 10px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+.accounts-header-row {
+    background: rgba(0, 0, 0, 0.8);
+    font-weight: 500;
+}
+
+.accounts-row:nth-child(even) {
+    background: rgba(255, 255, 255, 0.01);
+}
+
+.accounts-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.accounts-type,
+.accounts-limit,
+.accounts-balance {
+    white-space: nowrap;
+}
+
+.accounts-actions-col {
+    display: flex;
+    justify-content: flex-end;
+    gap: 4px;
+    white-space: nowrap;
+}
+
+.empty-row {
+    text-align: center;
+    opacity: 0.7;
+}
+
+/* Теги */
+
+.tag-primary,
+.tag-secondary {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 999px;
+    font-size: 10px;
+}
+
+.tag-primary {
+    border: 1px solid rgba(255, 215, 0, 0.9);
+    color: #ffeaa7;
+}
+
+.tag-secondary {
+    border: 1px solid rgba(180, 200, 255, 0.6);
+    color: #c4d0ff;
+}
+
+/* Итоги и полосы */
+
+.accounts-summary {
+    margin-top: 14px;
+}
+
+.summary-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin: 3px 0;
+}
+
+.summary-row-highlight {
+    font-weight: 600;
+    color: #ffd700;
+}
+
+.summary-bar {
+    margin: 4px 0 8px;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    overflow: hidden;
+}
+
+.summary-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+}
+
+.summary-bar-negative .summary-bar-fill {
+    background: rgba(255, 120, 120, 0.7);
+}
+
+.summary-bar-positive .summary-bar-fill {
+    background: rgba(120, 255, 180, 0.7);
+}
+
+.summary-bar-gold .summary-bar-fill {
+    background: rgba(255, 215, 0, 0.85);
+}
+
+/* Инфо/ошибки */
+.info-row,
+.error-row {
+    margin-top: 6px;
+    font-size: 13px;
+}
+
+.error-row {
+    color: #ff8080;
+}
+
+/* Кнопки */
+
+.btn {
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background: #222;
+    color: #f5f5f5;
+    transition: background 0.15s ease, transform 0.05s ease;
+}
+
+.btn:hover:not(:disabled) {
+    background: #333;
+    transform: translateY(-1px);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.btn-sm {
+    font-size: 11px;
+    padding: 3px 6px;
+}
+
+.btn-add-account {
+    border: 1px solid #ffd700;
+    font-weight: 500;
+}
+
+.btn-add-account.primary {
+    background: #111;
+}
+
+.btn-main {
+    border: 1px solid rgba(255, 215, 0, 0.7);
+}
+
+.btn-danger {
+    border: 1px solid #ff5555;
+    color: #ffb0b0;
+}
+
+/* Модалка */
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1200;
+}
+
+.modal {
+    background: rgba(10, 10, 10, 0.97);
+    border-radius: 12px;
+    padding: 20px 22px;
+    min-width: 340px;
+    max-width: 440px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.modal-title {
+    margin: 0 0 12px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13px;
+}
+
+.modal-field label {
+    opacity: 0.85;
+}
+
+.modal-field input,
+.modal-field select {
+    background: #111;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 6px 8px;
+    color: #f5f5f5;
+    font-size: 13px;
+}
+
+.modal-field input:focus,
+.modal-field select:focus {
+    outline: none;
+    border-color: #ffd700;
+}
+
+.checkbox-row {
+    margin-top: 2px;
+}
+
+.checkbox-inline {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+}
+
+.checkbox-inline input {
+    accent-color: #ffd700;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 10px;
+}
