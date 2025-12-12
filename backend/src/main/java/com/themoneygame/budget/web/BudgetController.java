@@ -7,10 +7,12 @@ import com.themoneygame.budget.application.AccountService;
 import com.themoneygame.budget.application.TransactionService;
 import com.themoneygame.budget.domain.Account;
 import com.themoneygame.budget.web.dto.AccountDto;
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.apache.log4j.LogManager;
 
 import java.util.List;
 import java.util.Map;
@@ -20,6 +22,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/budget")
 public class BudgetController {
 
+
+    private static final Logger loger = LogManager.getLogger(BudgetController.class);
     private final AccountService accountService;
     private final TransactionService transactionService;
 
@@ -67,6 +71,7 @@ public class BudgetController {
             @AuthenticationPrincipal UserDetailsImpl userDetails
     ) {
         User userRef = toUser(userDetails);
+        loger.debug(String.format("1: %s", userRef.toString()));
         return accountService.getAccountsForUser(userRef).stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
